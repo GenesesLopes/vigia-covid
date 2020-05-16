@@ -23,11 +23,12 @@ $(document).ready(function($) {
 
     //mensagem de erro
     function erroMessage(text = "") {
-        Swal.fire({
-            icon: "error",
-            title: "Erro",
-            text: text
-        });
+        Swal.fire("Erro!", text, "error");
+    }
+
+    //Mensagem de sucesso
+    function succesMesage(text = 'Ação realizada com sucesso!') {
+        Swal.fire("Sucesso!", text, "success");
     }
 
     //Validando sessões do formulário
@@ -66,7 +67,6 @@ $(document).ready(function($) {
             if (!$("div#clinicas input.is-invalid").length)
                 $("#tab-info a#pessoais-tab").trigger("click");
             erroMessage("Verifique os campos obrigatórios do formulário!");
-
         }
 
         return valid;
@@ -101,9 +101,10 @@ $(document).ready(function($) {
             //Alterando botão de submit
             $(".float-right")
                 .addClass("prox")
+                .find("#texto")
                 .text("Proximo");
             //Alterando botão de voltar/limpar
-            $("button[type='button']")
+            $(".card-footer button[type='button']")
                 .addClass("reset")
                 .addClass("btn-default")
                 .removeClass("btn-danger")
@@ -111,8 +112,9 @@ $(document).ready(function($) {
         } else {
             $(".float-right")
                 .removeClass("prox")
+                .find("#texto")
                 .text("Salvar");
-            $("button[type='button']")
+            $(".card-footer button[type='button']")
                 .removeClass("reset")
                 .removeClass("btn-default")
                 .addClass("btn-danger")
@@ -145,7 +147,8 @@ $(document).ready(function($) {
     $("[role='datapicker']").datepicker({
         todayBtn: "linked",
         language: "pt-BR",
-        autoclose: true
+        autoclose: true,
+        orientation: "bottom left"
     });
     //data de nascimento
     Inputmask("datetime", {
@@ -178,7 +181,7 @@ $(document).ready(function($) {
     });
 
     //Ação no botão de voltar/limpar
-    $("button[type='button']").click(function() {
+    $(".card-footer button[type='button']").click(function() {
         if (!$(this).hasClass("reset")) {
             $("#tab-info a#pessoais-tab").trigger("click");
         } else {
@@ -195,6 +198,8 @@ $(document).ready(function($) {
             }).then(result => {
                 if (result.value) {
                     $("form")[0].reset();
+                    $("[role='datapicker']").prop("disabled", true)
+                    $("#viagem").prop("disabled",true)
                     clearMessage();
                     Swal.fire("Sucesso!", "Formulário limpo!", "success");
                 }
@@ -207,7 +212,7 @@ $(document).ready(function($) {
         e.preventDefault();
         clearMessage();
         let btn_salvar = $(".float-right");
-
+        
         if (
             btn_salvar.hasClass("prox") &&
             validateSection($("form div#pessoais :input"))
@@ -218,6 +223,32 @@ $(document).ready(function($) {
             validateSection($("form :input"))
         ) {
             //Chamada ajax no servidor
+            let dados = new FormData($("form")[0]);
+            $.ajax({
+                type: "post",
+                url: home_domain + "/store",
+                data: dados,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $("#texto").prop("hidden", true);
+                    $("#spinner").prop("hidden", false);
+                    $("button[type='submit']").prop("disabled", true);
+                },
+                complete: function() {
+                    $("#texto").prop("hidden", false);
+                    $("#spinner").prop("hidden", true);
+                    $("button[type='submit']").prop("disabled", false);
+                },
+                success: function () {
+                    succesMesage();
+                    $("form")[0].reset();
+                    $("[role='datapicker']").prop("disabled", true)
+                    $("#viagem").prop("disabled",true)
+                    $("#tab-info a#pessoais-tab").trigger("click");
+                },
+                error: function() {}
+            });
         }
     });
 });

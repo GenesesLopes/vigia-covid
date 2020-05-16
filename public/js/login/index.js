@@ -6,7 +6,7 @@ $(document).ready(function($) {
     });
 
     let home_domain = window.location.origin;
-
+    
     //Habilitar/desabilitar botão
     function buttonDisabled() {
         if ($("#senha").hasClass("is-valid") && $("#cpf").hasClass("is-valid"))

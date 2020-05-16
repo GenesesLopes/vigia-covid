@@ -15,7 +15,7 @@
                         <br />
                         <h6>Campo Obrigatório&nbsp;<span class="text-red"><strong>*</strong></span></h6>
                     </div>
-                    <form role="form">
+                    <form role="store">
                         <div class="card-body">
                             <ul class="nav nav-tabs nav-justified" id="tab-info" role="tablist">
                                 <li class="nav-item">
@@ -88,19 +88,19 @@
                                             <label>Sexo <span class="text-red"><strong>*</strong></span> </label>
                                             <div class="form-group clearfix">
                                                 <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="masculino" name="sexo" value="m" checked>
+                                                    <input type="radio" id="masculino" name="sexo" value="Masculino" checked>
                                                     <label for="masculino">
                                                         Masculino
                                                     </label>
                                                 </div>
                                                 <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="feminino" name="sexo" value="f">
+                                                    <input type="radio" id="feminino" name="sexo" value="Feminino">
                                                     <label for="feminino">
                                                         Feminino
                                                     </label>
                                                 </div>
                                                 <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="ignorado" name="sexo" value="i">
+                                                    <input type="radio" id="ignorado" name="sexo" value="Ignorado">
                                                     <label for="ignorado">
                                                         Ignorado
                                                     </label>
@@ -211,234 +211,236 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Tosse</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <input type="checkbox" id="ck_tosse" name="ck_tosse">
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" id="tosse" role="datapicker" name="tosse" disabled class="form-control">
-                                                    <div class="invalid-feedback">
-                                                        Data inválida
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Febre</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <input type="checkbox" id="ck_febre" name="ck_febre">
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" id="febre" role="datapicker" name="febre" disabled class="form-control">
-                                                    <div class="invalid-feedback">
-                                                        Data inválida
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Dor de garganta</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <input type="checkbox" id="ck_garganta" name="ck_garganta">
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" id="garganta" role="datapicker" name="garganta" disabled class="form-control">
-                                                    <div class="invalid-feedback">
-                                                        Data inválida
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <label>Viagem nos últimos 14 dias</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <input type="checkbox" id="ck_viagem" name="ck_viagem">
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" id="viagem" name="viagem" disabled placeholder="Para onde?" class="form-control">
-                                                    <div class="invalid-feedback">
-                                                        Viagem inválida
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Contato com caso suspeito ou confirmado ? <span class="text-red"><strong>*</strong></span></label>
-                                            <div class="form-group clearfix">
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="contato_nao" name="contato" value="false" checked>
-                                                    <label for="contato_nao">
-                                                        Não
-                                                    </label>
-                                                </div>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="contato_sim" name="contato" value="true">
-                                                    <label for="contato_sim">
-                                                        Sim
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <h5>Fatores de risco</h5>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <ul>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="idade-65" name="fatores[]" value="Idade maior ou igual a 65 anos">
-                                                            <label for="idade-65">
-                                                                1: Idade maior ou igual a 65 anos
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="doenca-pumonar" name="fatores[]" value="Doença Pulmonar Obstrutiva Crônica">
-                                                            <label for="doenca-pumonar">
-                                                                2: Doença Pulmonar Obstrutiva Crônica
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="doenca-cerebrovascular" name="fatores[]" value="Doença Cerebrovascular">
-                                                            <label for="doenca-cerebrovascular">
-                                                                3: Doença Cerebrovascular
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="cardiopatias" name="fatores[]" value="Cardiopatias, incluindo hipertensão arterial severa">
-                                                            <label for="cardiopatias">
-                                                                4: Cardiopatias, incluindo hipertensão arterial severa
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="diabetes" name="fatores[]" value="Diabetes insulino-dependente">
-                                                            <label for="diabetes">
-                                                                5: Diabetes insulino-dependente
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="doenca-renal" name="fatores[]" value="Doença renal crônica">
-                                                            <label for="doenca-renal">
-                                                                6: Doença renal crônica
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <li><strong>7: Imunossuprimidos</strong>
-                                                    <ul>
-                                                        <li>
-                                                            <div class="icheck-primary">
-                                                                <input type="checkbox" id="leucemia" name="fatores[]" value="Leucemia ou Linfoma">
-                                                                <label for="leucemia">
-                                                                    7.1: Leucemia ou Linfoma
-                                                                </label>
+                                        <fieldset class="border p-2 rounded">
+                                            <legend class="w-auto">Sintomas</legend>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Tosse</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">
+                                                                    <input type="checkbox" id="ck_tosse" name="ck_tosse">
+                                                                </span>
                                                             </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icheck-primary">
-                                                                <input type="checkbox" id="hiv" name="fatores[]" value="HIV com CD4 < 350">
-                                                                <label for="hiv">
-                                                                    7.2: HIV com CD4 < 350 </label> </div> </li> <li>
-                                                                        <div class="icheck-primary">
-                                                                            <input type="checkbox" id="transplantados" name="fatores[]" value="Transplantados">
-                                                                            <label for="transplantados">
-                                                                                7.3: Transplantados </label>
-                                                                        </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icheck-primary">
-                                                                <input type="checkbox" id="quimioterapia" name="fatores[]" value="Quimioterapia nos últimos 30 dias">
-                                                                <label for="quimioterapia">
-                                                                    7.4: Quimioterapia nos últimos 30 dias
-                                                                </label>
+                                                            <input type="text" id="tosse" role="datapicker" name="tosse" disabled class="form-control">
+                                                            <div class="invalid-feedback">
+                                                                Data inválida
                                                             </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icheck-primary">
-                                                                <input type="checkbox" id="corticoides" name="fatores[]" value="Uso de corticóides por mais de 15 dias
-                                                                        (Predinisona, Hidrocortisona, Metilpredinisolona ou
-                                                                        Dexametasona)">
-                                                                <label for="corticoides">
-                                                                    7.5: Uso de corticóides por mais de 15 dias
-                                                                    (Predinisona, Hidrocortisona, Metilpredinisolona ou
-                                                                    Dexametasona)
-                                                                </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Febre</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">
+                                                                    <input type="checkbox" id="ck_febre" name="ck_febre">
+                                                                </span>
                                                             </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icheck-primary">
-                                                                <input type="checkbox" id="doencas-autoimunes" name="fatores[]" value="Doenças autoimunes (Lupus, Artrite reumatóide e
-                                                                        outras)">
-                                                                <label for="doencas-autoimunes">
-                                                                    7.6: Doenças autoimunes (Lupus, Artrite reumatóide e
-                                                                    outras)
-                                                                </label>
+                                                            <input type="text" id="febre" role="datapicker" name="febre" disabled class="form-control">
+                                                            <div class="invalid-feedback">
+                                                                Data inválida
                                                             </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <ul>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="gestantes" name="fatores[]" value="Gestantes">
-                                                            <label for="gestantes">
-                                                                8: Gestante
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Dor de garganta</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">
+                                                                    <input type="checkbox" id="ck_garganta" name="ck_garganta">
+                                                                </span>
+                                                            </div>
+                                                            <input type="text" id="garganta" role="datapicker" name="garganta" disabled class="form-control">
+                                                            <div class="invalid-feedback">
+                                                                Data inválida
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Viagem nos últimos 14 dias</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">
+                                                                    <input type="checkbox" id="ck_viagem" name="ck_viagem">
+                                                                </span>
+                                                            </div>
+                                                            <input type="text" id="viagem" name="viagem" disabled placeholder="Para onde?" class="form-control">
+                                                            <div class="invalid-feedback">
+                                                                Viagem inválida
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Contato com caso suspeito ou confirmado ? <span class="text-red"><strong>*</strong></span></label>
+                                                    <div class="form-group clearfix">
+                                                        <div class="icheck-primary d-inline">
+                                                            <input type="radio" id="contato_nao" name="contato" value="false" checked>
+                                                            <label for="contato_nao">
+                                                                Não
                                                             </label>
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="obesidade" name="fatores[]" value="Obesidade">
-                                                            <label for="obesidade">
-                                                                9: Obesidade
+                                                        <div class="icheck-primary d-inline">
+                                                            <input type="radio" id="contato_sim" name="contato" value="true">
+                                                            <label for="contato_sim">
+                                                                Sim
                                                             </label>
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" id="comorbidade" name="fatores[]" value="Uma ou mais comorbidade">
-                                                            <label for="comorbidade">
-                                                                10: Uma ou mais comorbidade
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h5>Fatores de risco</h5>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="idade-65" name="fatores[]" value="Idade maior ou igual a 65 anos">
+                                                                    <label for="idade-65">
+                                                                        1: Idade maior ou igual a 65 anos
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="doenca-pumonar" name="fatores[]" value="Doença Pulmonar Obstrutiva Crônica">
+                                                                    <label for="doenca-pumonar">
+                                                                        2: Doença Pulmonar Obstrutiva Crônica
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="doenca-cerebrovascular" name="fatores[]" value="Doença Cerebrovascular">
+                                                                    <label for="doenca-cerebrovascular">
+                                                                        3: Doença Cerebrovascular
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="cardiopatias" name="fatores[]" value="Cardiopatias, incluindo hipertensão arterial severa">
+                                                                    <label for="cardiopatias">
+                                                                        4: Cardiopatias, incluindo hipertensão arterial severa
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="diabetes" name="fatores[]" value="Diabetes insulino-dependente">
+                                                                    <label for="diabetes">
+                                                                        5: Diabetes insulino-dependente
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="doenca-renal" name="fatores[]" value="Doença renal crônica">
+                                                                    <label for="doenca-renal">
+                                                                        6: Doença renal crônica
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <li><strong>7: Imunossuprimidos</strong>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="icheck-primary">
+                                                                        <input type="checkbox" id="leucemia" name="fatores[]" value="Leucemia ou Linfoma">
+                                                                        <label for="leucemia">
+                                                                            7.1: Leucemia ou Linfoma
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="icheck-primary">
+                                                                        <input type="checkbox" id="hiv" name="fatores[]" value="HIV com CD4 < 350">
+                                                                        <label for="hiv">
+                                                                            7.2: HIV com CD4 < 350 </label> </div> </li> <li>
+                                                                                <div class="icheck-primary">
+                                                                                    <input type="checkbox" id="transplantados" name="fatores[]" value="Transplantados">
+                                                                                    <label for="transplantados">
+                                                                                        7.3: Transplantados </label>
+                                                                                </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="icheck-primary">
+                                                                        <input type="checkbox" id="quimioterapia" name="fatores[]" value="Quimioterapia nos últimos 30 dias">
+                                                                        <label for="quimioterapia">
+                                                                            7.4: Quimioterapia nos últimos 30 dias
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="icheck-primary">
+                                                                        <input type="checkbox" id="corticoides" name="fatores[]" value="Uso de corticóides por mais de 15 dias (Predinisona, Hidrocortisona, Metilpredinisolona ou Dexametasona)">
+                                                                        <label for="corticoides">
+                                                                            7.5: Uso de corticóides por mais de 15 dias
+                                                                            (Predinisona, Hidrocortisona, Metilpredinisolona ou
+                                                                            Dexametasona)
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="icheck-primary">
+                                                                        <input type="checkbox" id="doencas-autoimunes" name="fatores[]" value="Doenças autoimunes (Lupus, Artrite reumatóide e outras)">
+                                                                        <label for="doencas-autoimunes">
+                                                                            7.6: Doenças autoimunes (Lupus, Artrite reumatóide e
+                                                                            outras)
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="gestantes" name="fatores[]" value="Gestantes">
+                                                                    <label for="gestantes">
+                                                                        8: Gestante
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="obesidade" name="fatores[]" value="Obesidade">
+                                                                    <label for="obesidade">
+                                                                        9: Obesidade
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" id="comorbidade" name="fatores[]" value="Uma ou mais comorbidade">
+                                                                    <label for="comorbidade">
+                                                                        10: Uma ou mais comorbidade
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            <div>
+                                        </fieldset>
+                                        <div class="col-md-4 p-2" id="div_acompanhamento">
                                             <label>Acompanhamento</label>
-                                            <div class="form-group clearfix">
+                                            <div class="form-group col-md-12 clearfix">
                                                 <div class="icheck-primary d-inline">
                                                     <input type="radio" id="acompanhamento_nao" name="acompanhamento" value="false" checked>
                                                     <label for="acompanhamento_nao">
@@ -452,14 +454,17 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12" hidden>
+                                                <span class="badge badge-info">Status</span>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 p-2">
                                             <div class="form-group">
                                                 <label>Data de Cadasto</label>
                                                 <input type="text" id="data_cadastro" class="form-control" value="{{date('d/m/Y',strtotime('now'))}}" disabled />
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 p-2">
                                             <div class="form-group">
                                                 <label>Responsável pelo cadastro</label>
                                                 <input type="text" id="responsavel" class="form-control" value="usuário logado" disabled />
@@ -477,7 +482,15 @@
                         </div>
                         <div class="card-footer">
                             <button type="button" class="btn btn-default reset">Limpar</button>
-                            <button type="submit" class="btn btn-success float-right prox">Próximo</button>
+                            <button type="submit" class="btn btn-success float-right prox">
+                                <div id="spinner" hidden>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Aguarde...
+                                </div>
+                                <div id="texto">
+                                    Proximo
+                                </div>
+                            </button>
                         </div>
                     </form>
                 </div>
