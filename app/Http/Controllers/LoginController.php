@@ -22,7 +22,7 @@ class LoginController extends Controller
     //Login na plataforma
     public function login(Request $request)
     {
-        sleep(3);
+        sleep(1);
         
     }
 
