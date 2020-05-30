@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\{
-    Request,
-    Response
+
+use App\Http\Requests\LoginRequest;
+use App\User;
+use Illuminate\Support\Facades\{
+    Hash,
+    Auth
 };
 
 class LoginController extends Controller
@@ -19,16 +22,21 @@ class LoginController extends Controller
         return view('login');
     }
 
+    
+
     //Login na plataforma
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        sleep(1);
-        
+        if(Auth::check())
+            return redirect()->route('home');
+        /**Recuperando Login */
+        // return Response('erro teste',500);
+
     }
 
     public function logout()
     {
-        
+        Auth::logout();
         return redirect()->route('index');
 
     }

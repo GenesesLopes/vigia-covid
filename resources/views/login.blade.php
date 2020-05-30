@@ -1,5 +1,9 @@
 @extends('layouts.login')
 
+@section('css')
+<link rel="stylesheet" href="{{asset('Adminlte/plugins/sweetalert2/sweetalert2.min.css')}}">
+@endsection
+
 @section('content')
 <div class="login-logo">
   <a href=#"><b>Vigia-Covid</b></a>
@@ -17,7 +21,7 @@
             <span class="fas fa-ad"></span>
           </div>
         </div>
-        <div class="invalid-feedback">
+        <div class="invalid-feedback cpf">
           Login inválido
         </div>
       </div>
@@ -28,7 +32,7 @@
             <span class="fas fa-lock"></span>
           </div>
         </div>
-        <div class="invalid-feedback">
+        <div class="invalid-feedback senha">
           Senha Invalida.
         </div>
       </div>
@@ -43,7 +47,7 @@
         </div>
         <!-- /.col -->
         <div class="col-4">
-          <button type="submit" class="btn btn-outline-primary btn-block" disabled>
+          <button type="submit" class="btn btn-outline-primary btn-block">
             <div id="spinner" hidden>
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Aguarde...
@@ -58,14 +62,12 @@
       </div>
     </form>
 
-    <p class="mb-1">
-      <a href="#">Esqueci a senha</a>
-    </p>
   </div>
   <!-- /.login-card-body -->
 </div>
 @section('script')
 <script src="{{ asset('Adminlte/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+<script src="{{ asset('Adminlte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('js/login/index.js') }}"></script>
 @endsection
 @endsection

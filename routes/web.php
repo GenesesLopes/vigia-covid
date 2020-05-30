@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Rota Inicial
-Route::get('/', 'LoginController@index')->name('index');
+Route::get('/', 'LoginController@index')->name('index')->middleware('guest');
 
 //Rotas de login
 Route::group(['prefix' => 'login'],function(){
@@ -23,7 +23,7 @@ Route::group(['prefix' => 'login'],function(){
 });
 
 //Rotas Internas
-Route::group(['prefix' => 'interno'],function(){
+Route::group(['prefix' => 'interno', 'middleware' => ['auth']],function(){
 
     Route::get('/',['as' => 'home','uses' => 'HomeController@index']);
     //Rota de usuários

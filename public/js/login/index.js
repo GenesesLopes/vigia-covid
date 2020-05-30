@@ -27,7 +27,7 @@ $(document).ready(function($) {
     });
 
     //Iniciando iput mask
-    $("#cpf").inputmask("999-999-999-99", {
+    $("#cpf").inputmask("999.999.999-99", {
         onincomplete: function() {
             $(this)
                 .removeClass("is-valid")
@@ -49,16 +49,19 @@ $(document).ready(function($) {
             : $(this)
                   .addClass("is-invalid")
                   .removeClass("is-valid");
-        if(e.keyCode !== 13)
-            buttonDisabled();
+        // if(e.keyCode !== 13)
+            // buttonDisabled();
         
     });
 
    
     //Login Form
     $("form").submit(function(e) {
+
         let dados = new FormData($("form")[0]);
         e.preventDefault();
+        $("#cpf").removeClass("is-invalid is-valid")
+        $("#senha").removeClass("is-invalid is-valid")
         $.ajax({
             type: "post",
             url: home_domain + "/login",
@@ -78,7 +81,23 @@ $(document).ready(function($) {
             success: function () {
                 window.location.href = home_domain + '/interno';
             },
-            error: function() {}
+            error: function(data) {
+                $("#texto").prop("hidden", false);
+                $("#spinner").prop("hidden", true);
+                $("button").prop("disabled", false);
+                if(data.status == 422){
+                    for(var response in data.responseJSON.errors ){
+                        $(`.${response}`).text(data.responseJSON.errors[response][0])
+                        $(`#${response}`).addClass('is-invalid').removeClass('is-valid')
+                    }
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error interno!',
+                        text: 'Favor entrar em contato com o responsável pelo sistema.',
+                      })
+                }
+            }
         });
     });
 });
