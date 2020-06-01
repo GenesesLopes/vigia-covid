@@ -30,7 +30,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'cpf' => 'required|min:1s|string',
+            'cpf' => 'required|min:14|cpf',
             'senha' => 'required|string|min:6|max:9'
         ];
     }

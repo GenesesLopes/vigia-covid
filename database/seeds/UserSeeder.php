@@ -14,11 +14,34 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'nome' => 'Nome',
-            'cpf' => '057.162.595-96',
-            'password' => Hash::make('123123123')
-        ]);
+        /**Finserindo usuários para teste */
+        if(config('app.env') === 'local'){
+            
+            User::create([
+                'nome' => 'Adm Sys',
+                'cpf' => '929.801.790-19',
+                'password' => Hash::make('123123')
+            ]);
+
+            User::create([
+                'nome' => 'Adm',
+                'cpf' => '957.334.600-16',
+                'password' => Hash::make('123123')
+            ]);
+
+            User::create([
+                'nome' => 'Acompanhador',
+                'cpf' => '363.015.910-97',
+                'password' => Hash::make('123123')
+            ]);
+
+            User::create([
+                'nome' => 'Registrador',
+                'cpf' => '814.587.280-48',
+                'password' => Hash::make('123123')
+            ]);
+        }
+        
 
     }
 }
