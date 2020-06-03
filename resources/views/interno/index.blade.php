@@ -13,70 +13,73 @@
 <!-- /.content-header -->
 
 <!-- Main content -->
+<input type="hidden" id="role" value="{{Auth::user()->getRoleNames()->first()}}"/>
 <div class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-eye"></i></span>
+        @role('adm')
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-eye"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Suspeitos</span>
-                        <span class="info-box-number">0</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Suspeitos</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                    <span class="info-box-icon bg-info elevation-1">
-                        <i class="fas fa-meh"></i>
-                    </span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Confirmados</span>
-                        <span class="info-box-number">
-                            0
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1">
+                            <i class="fas fa-meh"></i>
                         </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Confirmados</span>
+                            <span class="info-box-number">
+                                0
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
+                <!-- /.col -->
 
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
 
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-smile"></i></span>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-smile"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Curados</span>
-                        <span class="info-box-number">0</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Curados</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-frown"></i></span>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-frown"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Óbitos</span>
-                        <span class="info-box-number">0</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Óbitos</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
-        </div>
-
+        @endrole
+        
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->

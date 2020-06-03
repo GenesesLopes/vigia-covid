@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Casts\Cpf;
+use App\Casts\Nome;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -40,7 +41,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'cpf' => Cpf::class
+        'cpf' => Cpf::class,
+        'nome' => Nome::class
     ];
 
     /**Relação adm */
@@ -57,10 +59,10 @@ class User extends Authenticatable
     }
 
      /**Verificando login */
-     public function getCpf($request): ?User
+     public function getCpf($cpf): ?User
      {
-         foreach(User::all() as $user){
-             if($user->cpf === $request->cpf)
+         foreach(self::all() as $user){
+             if($user->cpf === $cpf)
                  return $user;
          }
          return null;

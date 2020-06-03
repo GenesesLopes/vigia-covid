@@ -12,8 +12,9 @@ $(document).ready(function ($) {
     var errors = [];
     //Alterando Sidebar
     $("body").addClass("sidebar-collapse");
+
     //Selecionar menu users sidebar
-    $("li.pacientes").addClass("menu-open");
+    $("li.users").addClass("menu-open");
 
     function mensagemError(campo, valid = true) {
         if (valid) {
@@ -22,110 +23,30 @@ $(document).ready(function ($) {
             campo.removeClass("is-valid is-warning").addClass("is-invalid");
         }
     }
-    function getPaciente(cpf) {
-        $.getJSON(home_domain + `/getPaciente/${cpf}`, function (data) {
-            // console.log(data)
+
+    //mensagem de erro
+    function erroMessage(text = "") {
+        Swal.fire("Erro!", text, "error");
+    }
+
+    //Mensagem de sucesso
+    function succesMesage(text = "Ação realizada com sucesso!") {
+        Swal.fire("Sucesso!", text, "success");
+    }
+
+    function getCPF(cpf) {
+        $.getJSON(home_domain + `/getUser/${cpf}`, function (data) {
             if (data.length !== 0) {
-                for (pessoais in data.info_pessoais) {
-                    if (pessoais !== "cpf") {
-                        if (pessoais === "sexo") {
-                            $(`input[name='sexo']`).removeAttr("checked");
-                            $(`input[name='sexo']`).each(function (i) {
-                                if (
-                                    $(this).val() ===
-                                    data.info_pessoais[pessoais]
-                                ) {
-                                    $(this).prop("checked", true);
-                                    return false;
-                                }
-                            });
-                        } else if (pessoais === "profissional") {
-                            $(`input[name='profissional']`).removeAttr(
-                                "checked"
-                            );
-                            if (data.info_pessoais[pessoais]) {
-                                $("#profissional_sim").prop("checked", true);
-                            } else {
-                                $("#profissional_nao").prop("checked", true);
-                            }
-                        } else {
-                            $(`#${pessoais}`).val(data.info_pessoais[pessoais]);
-                        }
-                    }
+                for (dados in data) {
+                    if (dados !== "cpf") $(`#${dados}`).val(data[dados]);
+                    // else if (dados === 'papel') {
+                    //     $(this).prop("selected", true).trigger('change');
+                    //     // $("option").each(function (i) {
+                    //     //     if ($(this).text() === data[dados])
+                    //     //         $(this).prop("selected", true).trigger('change');
+                    //     // })
+                    // }
                 }
-
-                for (clinicas in data.info_clinicas) {
-                    valor = data.info_clinicas[clinicas];
-                    if (clinicas === "coleta" && valor != "") {
-                        $(`#ck_${clinicas}`).prop("checked", true);
-                        $(`#${clinicas}`)
-                            .prop("disabled", false)
-                            .datepicker("update", valor);
-                    } else if (clinicas === "acompanhamento") {
-                        $(`input[name='acompanhamento']`).removeAttr("checked");
-                        if (valor == "true") {
-                            $("#acompanhamento_sim").prop("checked", true);
-                        } else {
-                            $("#acompanhamento_nao").prop("checked", true);
-                        }
-                    } else {
-                        $(`#${clinicas}`).val(valor);
-                    }
-                }
-                for (sintomas in data.info_clinicas.sintomas) {
-                    dado = data.info_clinicas.sintomas;
-                    if (sintomas == "contato") {
-                        $(`input[name='contato']`).removeAttr("checked");
-                        if (dado) {
-                            $("#contato_sim").prop("checked", true);
-                        } else {
-                            $("#contato_nao").prop("checked", true);
-                        }
-                    } else if (sintomas === "tosse" && dado[sintomas] != "") {
-                        $(`#ck_${sintomas}`).prop("checked", true);
-                        $(`#${sintomas}`)
-                            .prop("disabled", false)
-                            .datepicker(
-                                "update",
-                                dado[sintomas].replace(/\//g, "-")
-                            );
-                    } else if (sintomas === "febre" && dado[sintomas] != "") {
-                        $(`#ck_${sintomas}`).prop("checked", true);
-                        $(`#${sintomas}`)
-                            .prop("disabled", false)
-                            .datepicker(
-                                "update",
-                                dado[sintomas].replace(/\//g, "-")
-                            );
-                    } else if (
-                        sintomas === "garganta" &&
-                        dado[sintomas] != ""
-                    ) {
-                        $(`#ck_${sintomas}`).prop("checked", true);
-                        $(`#${sintomas}`)
-                            .prop("disabled", false)
-                            .datepicker(
-                                "update",
-                                dado[sintomas].replace(/\//g, "-")
-                            );
-                    } else if (sintomas === "viagem" && dado[sintomas] != "") {
-                        $(`#${sintomas}`)
-                            .prop("disabled", false)
-                            .val(dado[sintomas]);
-                    }
-                }
-
-                $.each(data.info_clinicas.sintomas.sintomas, function (
-                    i,
-                    sintomas
-                ) {
-                    $("[name='fatores[]']").each(function (i) {
-                        if ($(this).val() == sintomas) {
-                            $(this).prop("checked", true);
-                        }
-                    });
-                });
-
                 $("#cpf")
                     .removeClass("is-invalid is-valid")
                     .addClass("is-warning");
@@ -146,18 +67,8 @@ $(document).ready(function ($) {
                 $("#senha_confirmation").prop("required", true);
                 $("#del").prop("hidden", true);
             }
-            // $("#papel").trigger("change");
+            $("#papel").trigger("change");
         });
-    }
-
-    //mensagem de erro
-    function erroMessage(text = "") {
-        Swal.fire("Erro!", text, "error");
-    }
-
-    //Mensagem de sucesso
-    function succesMesage(text = "Ação realizada com sucesso!") {
-        Swal.fire("Sucesso!", text, "success");
     }
 
     //Validando sessões do formulário
@@ -170,28 +81,32 @@ $(document).ready(function ($) {
                 $(this).attr("type") !== "button" &&
                 $(this).attr("type") !== "submit"
             ) {
-                //Condição para radio
-                if ($(this).attr("type") === "radio" && $(this).is(":checked"))
-                    checked++;
-                else if (
-                    $(this).attr("type") !== "radio" &&
-                    $(this).val() === "" &&
-                    $(this).hasClass("required")
+                if (
+                    ($(this).attr("id") == "senha" ||
+                        $(this).attr("id") == "senha_confirmation") &&
+                    $(this).prop("required")
                 ) {
-                    errors[$(this).attr("id")] = `Campo Vazio`;
+                    if ($(this).val().length < 6 || $(this).val().length > 9) {
+                        errors[
+                            $(this).attr("id")
+                        ] = `As senhas devem possuir entre 6 a 9 digitos`;
+                    } else if ($(this).attr("id") == "senha_confirmation") {
+                        if ($("#senha").val() !== $(this).val())
+                            errors[$(this).attr("id")] = `Senhas distintas`;
+                    }
+                }
+                if ($(this).attr("id") === "nome") {
+                    if ($(this).val().split(" ").length < 2)
+                        errors[$(this).attr("id")] = `O nome deve ser completo`;
                 }
             }
         });
-        if (checked < 2)
-            errors["radio"] = "É necessário selecionar uma das opções";
 
         for (indice in errors) {
             $(`#${indice}`).addClass("is-invalid").next().text(errors[indice]);
             valid = false;
         }
         if (!valid) {
-            if (!$("div#clinicas input.is-invalid").length)
-                $("#tab-info a#pessoais-tab").trigger("click");
             erroMessage("Verifique os campos obrigatórios do formulário!");
         }
 
@@ -209,38 +124,6 @@ $(document).ready(function ($) {
             }
         });
     }
-    //ativar e desativar menu
-    function menuTabs(menu) {
-        //Recuperando id da seção
-        let id_secao = menu.attr("id").split("-tab")[0];
-        //desativando e ativando menu
-        $("#tab-info a").removeClass("active");
-        menu.addClass("active");
-        //desativando e ativando seção
-        $("div.tab-pane").removeClass("show active");
-        $("#" + id_secao).addClass("show active");
-
-        //Alterando texto de botão salvar
-        if (id_secao === "pessoais") {
-            //Alterando botão de submit
-            $(".float-right").addClass("prox").find("#texto").text("Proximo");
-            //Alterando botão de voltar/limpar
-            $(".card-footer button[type='button']")
-                .not("#del")
-                .addClass("reset")
-                .addClass("btn-default")
-                .removeClass("btn-danger")
-                .text("Limpar");
-        } else {
-            $(".float-right").removeClass("prox").find("#texto").text("Salvar");
-            $(".card-footer button[type='button']")
-                .not("#del")
-                .removeClass("reset")
-                .removeClass("btn-default")
-                .addClass("btn-danger")
-                .text("Voltar");
-        }
-    }
 
     // $("#cpf").change(function () {
     //     if ($(this).val().length !== 14) {
@@ -257,50 +140,17 @@ $(document).ready(function ($) {
         },
         oncomplete: function () {
             mensagemError($(this));
-            getPaciente($(this).val());
+            getCPF($(this).val());
         },
     });
 
-    //Mascara telefone
-    $("#telefone").inputmask("(99) [9]9999-9999");
-
-    //mascara data-coleta
-    $("[role='datapicker']").datepicker({
-        todayBtn: "linked",
-        language: "pt-BR",
-        autoclose: true,
-        orientation: "bottom left",
+    $(".select2").select2({
+        theme: "bootstrap4",
     });
-    //data de nascimento
-    Inputmask("datetime", {
-        jitMasking: true,
-        inputFormat: "dd/mm/yyyy",
-        placeholder: "dd/mm/yyyy",
-    }).mask("#nascimento");
-
-    //Ação no menu
-    $("#tab-info a").on("click", function (e) {
-        e.preventDefault();
-        menuTabs($(this));
-    });
-
-    //ação checkbox de coleta
-    $(".input-group-text input").change(function () {
-        let input = $(this).attr("id").split("ck_")[1];
-        let input_datapicker =
-            $(`#${input}`).attr("role") !== undefined ? true : false;
-        if ($(this).is(":checked")) {
-            $(`#${input}`).prop("disabled", false);
-            if (input_datapicker) $(`#${input}`).datepicker("show");
-        } else {
-            $(`#${input}`).prop("disabled", true);
-            if (input_datapicker) $(`#${input}`).datepicker("update", "");
-            else $(`#${input}`).val("");
-        }
-    });
+    $(".select2").val(" ").trigger("change");
 
     //Ação no botão de voltar/limpar
-    $(".card-footer button[type='button']").not("#del").click(function () {
+    $(".card-footer button[type='button']").click(function () {
         if (!$(this).hasClass("reset")) {
             $("#tab-info a#pessoais-tab").trigger("click");
         } else {
@@ -317,12 +167,11 @@ $(document).ready(function ($) {
             }).then((result) => {
                 if (result.value) {
                     $("form")[0].reset();
-                    $("[role='datapicker']").prop("disabled", true);
-                    $("#viagem").prop("disabled", true);
+                    $(".select2").val(" ").trigger("change");
+                    clearMessage();
                     $("#senha").prop("required", true);
                     $("#senha_confirmation").prop("required", true);
                     $("#del").prop("hidden", true);
-                    clearMessage();
                     Swal.fire("Sucesso!", "Formulário limpo!", "success");
                 }
             });
@@ -333,21 +182,11 @@ $(document).ready(function ($) {
     $("form").submit(function (e) {
         e.preventDefault();
         clearMessage();
-        let btn_salvar = $(".float-right");
-
         if ($("button[type='submit']").hasClass("edit"))
             url = home_domain + "/update";
         else url = home_domain + "/store";
 
-        if (
-            btn_salvar.hasClass("prox") &&
-            validateSection($("form div#pessoais :input"))
-        ) {
-            $("#tab-info a#clinicas-tab").trigger("click");
-        } else if (
-            !btn_salvar.hasClass("prox") &&
-            validateSection($("form :input"))
-        ) {
+        if (validateSection($("form :input"))) {
             //Chamada ajax no servidor
             let dados = new FormData($("form")[0]);
             $.ajax({
@@ -369,8 +208,7 @@ $(document).ready(function ($) {
                 success: function () {
                     succesMesage();
                     $("form")[0].reset();
-                    $("[role='datapicker']").prop("disabled", true);
-                    $("#viagem").prop("disabled", true);
+                    $(".select2").val(" ").trigger("change");
                     $("#cpf").removeClass("is-warning");
                     $("#senha").prop("required", true);
                     $("#senha_confirmation").prop("required", true);
@@ -379,7 +217,6 @@ $(document).ready(function ($) {
                         .find("div#texto")
                         .text("Salvar");
                     $("#del").prop("hidden", true);
-                    $("#tab-info a#pessoais-tab").trigger("click");
                 },
                 error: function (data) {
                     $("#texto").prop("hidden", false);
@@ -411,7 +248,8 @@ $(document).ready(function ($) {
     $(document).on("click", "#del", function () {
         Swal.fire({
             title: "Atenção!",
-            text: "Esta ação irá excluir o paciente, deseja continuar ? ",
+            text:
+                "Esta ação irá excluir o usuário, deseja continuar ? ",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -447,7 +285,6 @@ $(document).ready(function ($) {
                             .find("div#texto")
                             .text("Salvar");
                         $("#del").prop("hidden", true);
-                        $("#tab-info a#pessoais-tab").trigger("click");
                     },
                     error: function (data) {
                         $(this).prop("disabled", false);

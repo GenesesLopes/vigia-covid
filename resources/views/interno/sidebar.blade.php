@@ -23,7 +23,8 @@
             </p>
           </a>
         </li>
-        <li class="nav-item has-treeview">
+        @hasanyrole('adm sys|adm')
+        <li class="nav-item has-treeview users">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user-alt"></i>
             <p>
@@ -40,7 +41,9 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview">
+        @endhasanyrole
+        @hasanyrole('registrador|acompanhador')
+        <li class="nav-item has-treeview pacientes">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user-injured"></i>
             <p>
@@ -49,20 +52,25 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
+            @role('registrador')
             <li class="nav-item">
               <a href="{{route('pacientes.index')}}" class="nav-link">
                 <i class="fas fa-address-card nav-icon"></i>
                 <p>Cadastrar/Editar</p>
               </a>
             </li>
+            @endrole
+            @role('acompanhador')
             <li class="nav-item">
               <a href="{{route('paciente.acompanhar')}}" class="nav-link">
                 <i class="fas fa-id-badge nav-icon"></i>
                 <p>Acompanhar</p>
               </a>
             </li>
+            @endrole
           </ul>
         </li>
+        @endhasanyrole
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

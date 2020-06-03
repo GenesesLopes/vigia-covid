@@ -31,22 +31,22 @@ class LoginRequest extends FormRequest
     {
         return [
             'cpf' => 'required|min:14|cpf',
-            'senha' => 'required|string|min:6|max:9'
+            'senha' => 'required|string|min:6|max:11'
         ];
     }
 
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            $user = (new User())->getCpf($this);
+            $user = (new User())->getCpf($this->cpf);
             /**Validando cpf */
             if(is_null($user))
                 $validator->errors()->add('cpf','Credencial de login não conferem');
-            /**Validando credenciasi de senha */
+            /**Validando credenciais de senha */
             else if(!Hash::check($this->senha,$user->password))
                 $validator->errors()->add('senha','Credencial de senha não conferem');
             else
-                Auth::login($user);
+                Auth::login($user);//Criando sessão de login
         });
     }
 

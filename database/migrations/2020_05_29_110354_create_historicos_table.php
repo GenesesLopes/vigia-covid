@@ -19,7 +19,7 @@ class CreateHistoricosTable extends Migration
             $table->unsignedBigInteger('users_id')->nullable();
             $table->string('action');
             $table->json('data');
-            $table->foreign('paciente_id')->references('id')->on('pacientes')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('paciente_id')->references('id')->on('pacientes')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });

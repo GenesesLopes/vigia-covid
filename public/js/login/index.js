@@ -42,13 +42,16 @@ $(document).ready(function($) {
 
     //Validação de senha
     $("#senha").keyup(function(e) {
-        $(this).val().length <= 9 && $(this).val().length >= 6
-            ? $(this)
+        if($(this).val().length <= 11 && $(this).val().length >= 6){
+            $(this)
                   .addClass("is-valid")
                   .removeClass("is-invalid")
-            : $(this)
+            $(".senha").text('A senha deve conter entre 6 e 11 digitos')
+        }else{
+            $(this)
                   .addClass("is-invalid")
                   .removeClass("is-valid");
+        }
         // if(e.keyCode !== 13)
             // buttonDisabled();
         

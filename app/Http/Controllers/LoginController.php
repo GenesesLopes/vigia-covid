@@ -19,6 +19,7 @@ class LoginController extends Controller
      */
     public function index()
     {
+        
         return view('login');
     }
 
@@ -36,7 +37,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        Auth::logout(true);
         return redirect()->route('index');
 
     }

@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="invalid-feedback senha">
-          Senha Invalida.
+          A senha deve conter entre 6 e 11 digitos
         </div>
       </div>
       <div class="row">

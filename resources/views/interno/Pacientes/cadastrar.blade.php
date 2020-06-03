@@ -14,6 +14,7 @@
                         <h2 class="card-title"><strong>Formulário de paciêntes</strong></h2>
                         <br />
                         <h6>Campo Obrigatório&nbsp;<span class="text-red"><strong>*</strong></span></h6>
+                        <h6><strong>Para edição de dados, basta digitar o cpf que os campos serão preenchidos automaticamente</strong></h6>
                     </div>
                     <form role="store">
                         <div class="card-body">
@@ -45,6 +46,9 @@
                                                 </div>
                                                 <div class="valid-feedback">
                                                     Válido
+                                                </div>
+                                                <div class="warning-feedback cpf">
+                                                    Cpf Existente
                                                 </div>
                                             </div>
                                         </div>
@@ -165,13 +169,13 @@
                                             <label>Profissional da Saúde <span class="text-red"><strong>*</strong></span></label>
                                             <div class="form-group clearfix">
                                                 <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="profissional_nao" name="profissional" value="false" checked>
+                                                    <input type="radio" id="profissional_nao" name="profissional" value="0" checked>
                                                     <label for="profissional_nao">
                                                         Não
                                                     </label>
                                                 </div>
                                                 <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="profissional_sim" name="profissional" value="true">
+                                                    <input type="radio" id="profissional_sim" name="profissional" value="1">
                                                     <label for="profissional_sim">
                                                         Sim
                                                     </label>
@@ -282,13 +286,13 @@
                                                     <label>Contato com caso suspeito ou confirmado ? <span class="text-red"><strong>*</strong></span></label>
                                                     <div class="form-group clearfix">
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="contato_nao" name="contato" value="false" checked>
+                                                            <input type="radio" id="contato_nao" name="contato" value="0" checked>
                                                             <label for="contato_nao">
                                                                 Não
                                                             </label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" id="contato_sim" name="contato" value="true">
+                                                            <input type="radio" id="contato_sim" name="contato" value="1">
                                                             <label for="contato_sim">
                                                                 Sim
                                                             </label>
@@ -436,7 +440,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                            <div>
+                                                <div>
                                         </fieldset>
                                         <div class="col-md-4 p-2" id="div_acompanhamento">
                                             <label>Acompanhamento</label>
@@ -467,7 +471,7 @@
                                         <div class="col-md-4 p-2">
                                             <div class="form-group">
                                                 <label>Responsável pelo cadastro</label>
-                                                <input type="text" id="responsavel" class="form-control" value="usuário logado" disabled />
+                                                <input type="text" id="responsavel" class="form-control" value="{{Auth::user()->nome}}" disabled />
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -491,7 +495,9 @@
                                     Proximo
                                 </div>
                             </button>
+                            <button type="button" hidden id="del" class="btn btn-danger float-right">Excluir</button>
                         </div>
+                        <input type="hidden" id="id" name="id" />
                     </form>
                 </div>
             </div>

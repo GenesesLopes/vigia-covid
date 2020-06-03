@@ -8,6 +8,9 @@ class Historico extends Model
 {
     protected $fillable = ['id','paciente_id','users_id','action','data'];
 
+    protected $casts = [
+        'data' => 'array'
+    ];
     /**Relação de usuários */
     public function user()
     {
